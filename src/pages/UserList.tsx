@@ -18,8 +18,14 @@ const UserList: React.FC = () => {
     try {
       if (searchKeyword) {
         const res = await userApi.searchUsers(searchKeyword);
-        setUsers(res.data.data || []);
-        setTotal(Array.isArray(res.data.data) ? res.data.data.length : 0);
+        const data = res.data.data;
+        if (data && data.list) {
+          setUsers(data.list);
+          setTotal(data.total);
+        } else {
+          setUsers([]);
+          setTotal(0);
+        }
       } else {
         const res = await userApi.getUsers({ page, pageSize });
         const data = res.data.data;

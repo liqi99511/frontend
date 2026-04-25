@@ -20,8 +20,8 @@ export const userApi = {
     api.put(`/user/users/${id}`, data),
   deleteUser: (id: number) =>
     api.delete(`/user/users/${id}`),
-  searchUsers: (keyword: string) =>
-    api.get('/user/search', { params: { keyword } }),
+  searchUsers: (name: string) =>
+    api.get('/user/search', { params: { name } }),
 };
 
 // 排便记录相关 API
